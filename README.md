@@ -1,28 +1,6 @@
 # EcoByte
 
-EcoByte is an enterprise-grade platform designed to measure, analyze, and optimize the carbon footprint of digital applications.
-
-## Architecture Overview
-
-This project utilizes a modern, type-safe full-stack architecture designed for performance, scalability, and security.
-
-### Frontend Architecture
-
-The frontend is built on **SvelteKit**, leveraging the latest advancements in the Svelte ecosystem.
-
-- **Svelte 5**: We utilize Svelte 5 with **Runes** (`$state`, `$derived`, `$effect`) for fine-grained reactivity. This approach ensures optimal performance by updating only the DOM elements that change, significantly reducing the runtime overhead compared to traditional virtual DOM frameworks.
-- **Better Auth**: Authentication is handled by **Better Auth**, providing a secure, session-based authentication system. It integrates seamlessly with our backend to support email/password and OAuth providers (e.g., Microsoft) with strictly typed client-side hooks.
-- **Drizzle ORM**: While primarily a backend tool, Drizzle is tightly integrated into our SvelteKit server loaders (`+page.server.ts`). This allows our frontend to consume fully typed data objects directly from the database schema, ensuring end-to-end type safety from the SQL query to the UI component.
-
-### Backend & Infrastructure
-
-The backend data layer and infrastructure are designed for reliability and enterprise deployment.
-
-- **PostgreSQL**: Our primary data store is **PostgreSQL**, chosen for its ACID compliance, robust concurrent performance, and rich ecosystem. It serves as the single source of truth for user data, analytics, and platform configurations.
-- **Docker**: The entire application stack is containerized using **Docker**. This ensures:
-  - **Reproducibility**: Development, staging, and production environments are identical.
-  - **Scalability**: Services can be orchestrated and scaled horizontally using Docker Swarm or Kubernetes.
-  - **Isolation**: Dependencies are encapsulated, preventing environment configuration conflicts.
+Carbon footprint estimator for digital service delivery.
 
 ## Development
 
@@ -34,9 +12,84 @@ bun install
 bun dev
 ```
 
+## Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+
+```bash
+cp .env.example .env
+```
+
+Required variables:
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `BETTER_AUTH_SECRET` | Secret key for authentication |
+| `BETTER_AUTH_URL` | Base URL for auth callbacks |
+| `ORIGIN` | Application URL (required in production) |
+
+## Database
+
+Run migrations:
+
+```bash
+bun run dev
+```
+
 ## Build
 
 ```bash
-# Build for production
 bun run build
 ```
+
+## Docker Deployment
+
+### Build the image
+
+```bash
+docker build -t ecobyte-frontend .
+```
+
+### Run with Docker Compose
+
+1. Create a `.env` file with your configuration:
+
+```bash
+# Database
+POSTGRES_USER=ecobyte
+POSTGRES_PASSWORD=your-secure-password
+POSTGRES_DB=ecobyte
+
+# Auth
+BETTER_AUTH_SECRET=generate-a-secure-random-string
+BETTER_AUTH_URL=http://localhost:3000
+
+# App
+ORIGIN=http://localhost:3000
+```
+
+2. Start the services:
+
+```bash
+docker compose up -d
+```
+
+The application will be available at `http://localhost:3000`.
+
+### Production
+
+For production, update your `.env`:
+
+```bash
+ORIGIN=https://yourdomain.com
+BETTER_AUTH_URL=https://yourdomain.com
+```
+
+## Tech Stack
+
+- **Framework**: SvelteKit with Svelte 5
+- **Database**: PostgreSQL with Drizzle ORM
+- **Auth**: Better Auth
+- **Styling**: Tailwind CSS v4 + shadcn-svelte
+- **Runtime**: Bun
