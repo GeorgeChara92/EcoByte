@@ -36,6 +36,8 @@
     "drizzle-kit": "^0.31.8",
     "drizzle-orm": "^0.45.1",
     "pg": "^8.16.3",
-    "tailwindcss": "^4.1.18"
+    "sveltekit-superforms": "^2.29.1",
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.5"
   }
 }
