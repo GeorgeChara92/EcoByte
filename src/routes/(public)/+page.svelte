@@ -8,25 +8,32 @@
         ShieldCheck,
         Globe,
         Menu,
+        CheckCircle,
     } from "@lucide/svelte";
 </script>
 
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col min-h-screen font-sans text-foreground">
     <!-- Header -->
     <header
-        class="sticky top-0 z-50 w-full border-b backdrop-blur-md bg-background/80 supports-[backdrop-filter]:bg-background/60"
+        class="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40"
     >
         <div
-            class="container mx-auto px-4 md:px-6 flex h-16 items-center justify-between"
+            class="container mx-auto px-6 md:px-12 flex h-20 items-center justify-between"
         >
             <a
                 href="/"
-                class="flex items-center gap-2 font-bold text-xl tracking-tight"
+                class="flex items-center gap-2.5 font-bold text-2xl tracking-tight text-foreground"
             >
-                <Leaf class="size-6 text-primary" />
+                <div
+                    class="bg-primary text-primary-foreground p-1.5 rounded-sm"
+                >
+                    <Leaf class="size-5" />
+                </div>
                 <span>EcoByte</span>
             </a>
-            <nav class="hidden md:flex gap-6 text-sm font-medium">
+            <nav
+                class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+            >
                 <a href="#features" class="hover:text-primary transition-colors"
                     >Features</a
                 >
@@ -40,15 +47,18 @@
             <div class="flex items-center gap-4">
                 <a
                     href="/auth/login"
-                    class="text-sm font-medium hover:underline underline-offset-4 hidden sm:block"
+                    class="text-sm font-semibold hover:text-primary transition-colors hidden sm:block uppercase tracking-wide"
                 >
                     Log in
                 </a>
-                <Button href="/auth/register" size="sm" class="hidden sm:flex">
+                <Button
+                    href="/auth/register"
+                    class="rounded-none font-bold uppercase tracking-wider px-6"
+                >
                     Get Started
                 </Button>
-                <button class="md:hidden p-2">
-                    <Menu class="size-5" />
+                <button class="md:hidden p-2 text-foreground">
+                    <Menu class="size-6" />
                     <span class="sr-only">Toggle menu</span>
                 </button>
             </div>
@@ -57,112 +67,296 @@
 
     <main class="flex-1">
         <!-- Hero Section -->
-        <section class="relative py-20 md:py-32 overflow-hidden">
+        <section
+            class="relative pt-24 pb-32 overflow-hidden border-b border-border/50"
+        >
+            <!-- Engineered Grid Background -->
             <div
-                class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+                class="absolute inset-0 -z-10 bg-background bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
             ></div>
             <div
-                class="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px]"
+                class="absolute inset-0 -z-10 bg-gradient-to-t from-background via-transparent to-transparent"
+            ></div>
+
+            <!-- Angular Background Accent -->
+            <div
+                class="absolute inset-0 -z-10 bg-muted/20"
+                style="clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); display: none;"
             ></div>
 
             <div
-                class="container mx-auto px-4 md:px-6 flex flex-col items-center text-center max-w-4xl space-y-8"
+                class="container mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 items-center"
             >
-                <div
-                    class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                >
-                    ✨ Introducing Smart Analytics v2.0
+                <div class="space-y-8 max-w-2xl animate-fade-in-up">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 border border-primary/20 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest"
+                    >
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+                            ></span>
+                            <span
+                                class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                            ></span>
+                        </span>
+                        System Online: v2.0
+                    </div>
+
+                    <h1
+                        class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[1.1] text-foreground"
+                    >
+                        Sustainable code for a <span
+                            class="text-primary relative inline-block"
+                        >
+                            greener
+                            <svg
+                                class="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10"
+                                viewBox="0 0 100 10"
+                                preserveAspectRatio="none"
+                            >
+                                <path
+                                    d="M0 5 Q 50 10 100 5"
+                                    stroke="currentColor"
+                                    stroke-width="8"
+                                    fill="none"
+                                />
+                            </svg>
+                        </span> future.
+                    </h1>
+
+                    <p
+                        class="text-xl text-muted-foreground leading-relaxed max-w-[540px]"
+                    >
+                        We empower enterprises to measure, analyze, and optimize
+                        their digital carbon footprint. Drive efficiency without
+                        compromising performance.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <Button
+                            size="lg"
+                            class="rounded-none h-14 px-8 text-base font-bold uppercase tracking-wider shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                        >
+                            Start Optimizing
+                            <ArrowRight class="ml-2 size-5" />
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="lg"
+                            class="rounded-none h-14 px-8 text-base font-bold uppercase tracking-wider border-2 hover:bg-muted hover:text-foreground hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                        >
+                            View Demo
+                        </Button>
+                    </div>
+
+                    <div
+                        class="pt-8 flex items-center gap-8 text-sm text-muted-foreground font-medium"
+                    >
+                        <div
+                            class="flex items-center gap-2 group cursor-default"
+                        >
+                            <CheckCircle
+                                class="size-4 text-primary group-hover:scale-110 transition-transform"
+                            />
+                            <span
+                                class="group-hover:text-foreground transition-colors"
+                                >Enterprise Ready</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center gap-2 group cursor-default"
+                        >
+                            <CheckCircle
+                                class="size-4 text-primary group-hover:scale-110 transition-transform"
+                            />
+                            <span
+                                class="group-hover:text-foreground transition-colors"
+                                >ISO Compliant</span
+                            >
+                        </div>
+                    </div>
                 </div>
-                <h1
-                    class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent"
-                >
-                    Sustainable code for a <br class="hidden md:block" /> greener
-                    digital future.
-                </h1>
-                <p
-                    class="text-lg md:text-xl text-muted-foreground max-w-[600px] text-balance"
-                >
-                    EcoByte helps you measure, analyze, and optimize your
-                    digital carbon footprint. Build faster, cleaner, and more
-                    efficient applications.
-                </p>
-                <div
-                    class="flex flex-col sm:flex-row gap-4 w-full justify-center pt-4"
-                >
-                    <Button size="lg" class="group">
-                        Start Optimizing <ArrowRight
-                            class="ml-2 size-4 group-hover:translate-x-1 transition-transform"
-                        />
-                    </Button>
-                    <Button variant="outline" size="lg">View Demo</Button>
+
+                <!-- Abstract Visual -->
+                <div class="relative hidden lg:block h-[600px] w-full">
+                    <!-- Floating elements container -->
+                    <div
+                        class="absolute inset-0 flex items-center justify-center"
+                    >
+                        <!-- Main Card -->
+                        <div
+                            class="relative z-10 bg-background/80 backdrop-blur-sm border-2 border-border p-8 shadow-2xl skew-y-3 animate-float max-w-sm w-full"
+                        >
+                            <!-- Corner Accents -->
+                            <div
+                                class="absolute -top-1 -left-1 size-3 border-t-2 border-l-2 border-primary"
+                            ></div>
+                            <div
+                                class="absolute -bottom-1 -right-1 size-3 border-b-2 border-r-2 border-primary"
+                            ></div>
+
+                            <div class="space-y-6">
+                                <div
+                                    class="flex items-center justify-between border-b pb-4"
+                                >
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="size-3 bg-red-500 rounded-full"
+                                        ></div>
+                                        <div
+                                            class="size-3 bg-yellow-500 rounded-full"
+                                        ></div>
+                                        <div
+                                            class="size-3 bg-green-500 rounded-full"
+                                        ></div>
+                                    </div>
+                                    <div
+                                        class="text-xs font-mono text-muted-foreground"
+                                    >
+                                        metrics.json
+                                    </div>
+                                </div>
+                                <div class="space-y-4 font-mono text-sm">
+                                    <div
+                                        class="flex justify-between items-center"
+                                    >
+                                        <span class="text-muted-foreground"
+                                            >Status</span
+                                        >
+                                        <span class="text-green-500 font-bold"
+                                            >OPTIMAL</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="flex justify-between items-center"
+                                    >
+                                        <span class="text-muted-foreground"
+                                            >Carbon Output</span
+                                        >
+                                        <span class="font-bold"
+                                            >128g / Visit</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-full bg-muted h-2 rounded-full overflow-hidden"
+                                    >
+                                        <div
+                                            class="bg-primary h-full w-[85%] animate-pulse-slow"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Decorative "Behind" Elements -->
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-primary/10 rounded-full animate-spin-slow duration-[20s]"
+                            style="animation-duration: 30s;"
+                        ></div>
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/3 -translate-y-2/3 w-64 h-64 bg-primary/5 blur-3xl rounded-full mix-blend-multiply filter"
+                        ></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="py-20 bg-muted/30 border-y">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center mb-16 space-y-4">
-                    <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl">
+        <section
+            id="features"
+            class="py-24 bg-muted/5 relative border-b border-border/50"
+        >
+            <!-- Angular separator line -->
+            <div
+                class="absolute top-0 left-0 right-0 h-24 bg-background"
+                style="clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);"
+            ></div>
+
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="max-w-3xl mb-16">
+                    <h2
+                        class="text-3xl md:text-5xl font-bold tracking-tight mb-6"
+                    >
                         Platform Features
                     </h2>
-                    <p
-                        class="text-muted-foreground text-lg max-w-[800px] mx-auto"
-                    >
+                    <p class="text-xl text-muted-foreground leading-relaxed">
                         Everything you need to build sustainable web
-                        applications without compromising on performance.
+                        applications without compromising on performance. Our
+                        suite of tools provides deep insights and actionable
+                        data.
                     </p>
                 </div>
+
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Feature 1 -->
                     <div
-                        class="bg-card p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow"
+                        class="group bg-background p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden"
                     >
                         <div
-                            class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary"
+                            class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                        ></div>
+                        <div
+                            class="mb-6 inline-flex items-center justify-center size-14 bg-primary/10 text-primary rounded-sm"
                         >
-                            <BarChart3 class="size-6" />
+                            <BarChart3 class="size-7" />
                         </div>
-                        <h3 class="font-bold text-xl mb-2">
+                        <h3
+                            class="font-bold text-2xl mb-3 group-hover:text-primary transition-colors"
+                        >
                             Real-time Analytics
                         </h3>
-                        <p class="text-muted-foreground">
+                        <p class="text-muted-foreground leading-relaxed">
                             Track your application's energy consumption and
-                            carbon emissions in real-time dashboards.
+                            carbon emissions in real-time dashboards with
+                            granular precision.
                         </p>
                     </div>
+
                     <!-- Feature 2 -->
                     <div
-                        class="bg-card p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow"
+                        class="group bg-background p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden"
                     >
                         <div
-                            class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary"
+                            class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                        ></div>
+                        <div
+                            class="mb-6 inline-flex items-center justify-center size-14 bg-primary/10 text-primary rounded-sm"
                         >
-                            <Zap class="size-6" />
+                            <Zap class="size-7" />
                         </div>
-                        <h3 class="font-bold text-xl mb-2">
+                        <h3
+                            class="font-bold text-2xl mb-3 group-hover:text-primary transition-colors"
+                        >
                             Performance Optimization
                         </h3>
-                        <p class="text-muted-foreground">
-                            Automated suggestions to reduce payload size and
-                            improve execution efficiency.
+                        <p class="text-muted-foreground leading-relaxed">
+                            Automated AI-driven suggestions to reduce payload
+                            size, optimize assets, and improve execution
+                            efficiency.
                         </p>
                     </div>
+
                     <!-- Feature 3 -->
                     <div
-                        class="bg-card p-6 rounded-xl border shadow-sm hover:shadow-md transition-shadow"
+                        class="group bg-background p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden"
                     >
                         <div
-                            class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary"
+                            class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                        ></div>
+                        <div
+                            class="mb-6 inline-flex items-center justify-center size-14 bg-primary/10 text-primary rounded-sm"
                         >
-                            <ShieldCheck class="size-6" />
+                            <ShieldCheck class="size-7" />
                         </div>
-                        <h3 class="font-bold text-xl mb-2">
+                        <h3
+                            class="font-bold text-2xl mb-3 group-hover:text-primary transition-colors"
+                        >
                             Green Certification
                         </h3>
-                        <p class="text-muted-foreground">
-                            Earn verifiable badges and certificates for your
-                            low-carbon digital products.
+                        <p class="text-muted-foreground leading-relaxed">
+                            Earn verifiable badges and ISO-ready certificates
+                            for your low-carbon digital products to showcase
+                            your commitment.
                         </p>
                     </div>
                 </div>
@@ -170,37 +364,63 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <section
+            class="py-24 bg-foreground text-background relative overflow-hidden"
+        >
+            <!-- Abstract background pattern -->
+            <div
+                class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"
+            ></div>
+
+            <div class="container mx-auto px-6 md:px-12 relative z-10">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-white/10"
+                >
                     <div class="space-y-2">
-                        <h3 class="text-4xl font-bold">10k+</h3>
+                        <h3
+                            class="text-5xl md:text-6xl font-bold tracking-tighter text-white"
+                        >
+                            10k+
+                        </h3>
                         <p
-                            class="text-sm text-muted-foreground uppercase tracking-wider"
+                            class="text-sm font-bold uppercase tracking-widest text-primary"
                         >
                             Active Users
                         </p>
                     </div>
                     <div class="space-y-2">
-                        <h3 class="text-4xl font-bold">500TB</h3>
+                        <h3
+                            class="text-5xl md:text-6xl font-bold tracking-tighter text-white"
+                        >
+                            500TB
+                        </h3>
                         <p
-                            class="text-sm text-muted-foreground uppercase tracking-wider"
+                            class="text-sm font-bold uppercase tracking-widest text-primary"
                         >
                             Data Saved
                         </p>
                     </div>
                     <div class="space-y-2">
-                        <h3 class="text-4xl font-bold">99.9%</h3>
+                        <h3
+                            class="text-5xl md:text-6xl font-bold tracking-tighter text-white"
+                        >
+                            99.9%
+                        </h3>
                         <p
-                            class="text-sm text-muted-foreground uppercase tracking-wider"
+                            class="text-sm font-bold uppercase tracking-widest text-primary"
                         >
                             Uptime
                         </p>
                     </div>
                     <div class="space-y-2">
-                        <h3 class="text-4xl font-bold">24/7</h3>
+                        <h3
+                            class="text-5xl md:text-6xl font-bold tracking-tighter text-white"
+                        >
+                            24/7
+                        </h3>
                         <p
-                            class="text-sm text-muted-foreground uppercase tracking-wider"
+                            class="text-sm font-bold uppercase tracking-widest text-primary"
                         >
                             Support
                         </p>
@@ -210,96 +430,162 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="py-20 bg-primary/5 border-y">
+        <section class="py-32 relative">
             <div
-                class="container mx-auto px-4 md:px-6 text-center max-w-3xl space-y-6"
+                class="absolute inset-0 bg-muted/30 skew-y-1 transform origin-bottom-right -z-10"
+            ></div>
+            <div
+                class="container mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-12 items-center"
             >
-                <Globe class="size-12 mx-auto text-primary opacity-50" />
-                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    Ready to make a difference?
-                </h2>
-                <p class="text-xl text-muted-foreground">
-                    Join thousands of developers building a cleaner internet
-                    today.
-                </p>
-                <Button size="lg" class="mt-4">Get Started for Free</Button>
+                <div class="space-y-6">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tighter">
+                        Ready to make a difference?
+                    </h2>
+                    <p class="text-xl text-muted-foreground max-w-lg">
+                        Join thousands of developers building a cleaner internet
+                        today. Start your journey towards digital
+                        sustainability.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 lg:justify-end">
+                    <Button
+                        size="lg"
+                        class="rounded-none h-16 px-10 text-lg font-bold uppercase tracking-wider shadow-xl"
+                    >
+                        Get Started for Free
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="lg"
+                        class="rounded-none h-16 px-10 text-lg font-bold uppercase tracking-wider border-2 hover:bg-background"
+                    >
+                        Contact Sales
+                    </Button>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 bg-background border-t">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 font-bold text-lg">
-                        <Leaf class="size-5 text-primary" />
+    <footer class="py-16 bg-background border-t">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2.5 font-bold text-xl">
+                        <div
+                            class="bg-primary text-primary-foreground p-1 rounded-sm"
+                        >
+                            <Leaf class="size-4" />
+                        </div>
                         <span>EcoByte</span>
                     </div>
-                    <p class="text-sm text-muted-foreground leading-relaxed">
+                    <p
+                        class="text-sm text-muted-foreground leading-relaxed max-w-xs"
+                    >
                         Pioneering sustainable digital infrastructure for the
-                        next generation of web applications.
+                        next generation of web applications. We are committed to
+                        a carbon-neutral future.
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-2 text-sm text-muted-foreground">
+                    <h4 class="font-bold mb-6 uppercase text-sm tracking-wider">
+                        Product
+                    </h4>
+                    <ul
+                        class="space-y-3 text-sm text-muted-foreground font-medium"
+                    >
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Features</a
                             >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Integrations</a
                             >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Pricing</a
                             >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Changelog</a
                             >
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm text-muted-foreground">
+                    <h4 class="font-bold mb-6 uppercase text-sm tracking-wider">
+                        Company
+                    </h4>
+                    <ul
+                        class="space-y-3 text-sm text-muted-foreground font-medium"
+                    >
                         <li>
-                            <a href="##" class="hover:text-foreground">About</a>
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
+                                >About</a
+                            >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground">Blog</a>
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
+                                >Blog</a
+                            >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Careers</a
                             >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Contact</a
                             >
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-muted-foreground">
+                    <h4 class="font-bold mb-6 uppercase text-sm tracking-wider">
+                        Legal
+                    </h4>
+                    <ul
+                        class="space-y-3 text-sm text-muted-foreground font-medium"
+                    >
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Privacy</a
                             >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground">Terms</a>
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
+                                >Terms</a
+                            >
                         </li>
                         <li>
-                            <a href="##" class="hover:text-foreground"
+                            <a
+                                href="##"
+                                class="hover:text-primary transition-colors"
                                 >Security</a
                             >
                         </li>
@@ -307,15 +593,21 @@
                 </div>
             </div>
             <div
-                class="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground"
+                class="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground font-medium"
             >
                 <p>
                     &copy; {new Date().getFullYear()} EcoByte Inc. All rights reserved.
                 </p>
-                <div class="flex gap-4">
-                    <a href="##" class="hover:text-foreground">Twitter</a>
-                    <a href="##" class="hover:text-foreground">GitHub</a>
-                    <a href="##" class="hover:text-foreground">LinkedIn</a>
+                <div class="flex gap-6">
+                    <a href="##" class="hover:text-foreground transition-colors"
+                        >Twitter</a
+                    >
+                    <a href="##" class="hover:text-foreground transition-colors"
+                        >GitHub</a
+                    >
+                    <a href="##" class="hover:text-foreground transition-colors"
+                        >LinkedIn</a
+                    >
                 </div>
             </div>
         </div>
